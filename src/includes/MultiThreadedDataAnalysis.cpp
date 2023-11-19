@@ -41,6 +41,11 @@ struct YearUnitsSoldResult {
   unordered_map<string, int> totalValues;
 };
 
+struct ItemSoldResult {
+ unordered_map<string, int> itemSoldCounts;
+ unordered_map<string, string> predominantItemTypes;
+};
+
 bool checkCSVFileExists(const string& filename) {
    filesystem::path filePath(filename);
    if (filesystem::exists(filePath)) {
@@ -445,10 +450,6 @@ void analyzeYearUnitsSoldMultithreaded(WINDOW* menuwin, const vector<unordered_m
 }
 
 
-struct ItemSoldResult {
- unordered_map<string, int> itemSoldCounts;
- unordered_map<string, string> predominantItemTypes;
-};
 void printItemSoldInsights(WINDOW* menuwin, const ItemSoldResult& result, const string& xField) {
     int line = 3;
     if(xField != "Item Type"){
