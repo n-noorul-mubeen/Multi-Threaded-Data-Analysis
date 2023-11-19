@@ -81,6 +81,9 @@ void printBanner(){
 }
 
 void mainMenuTUI(WINDOW* menuwin){
+    highlight = 0;
+    wclear(menuwin);
+    box(menuwin, 0, 0);
     while(var == 0){
         
         for(int i = 0; i < 2; i++ ){
@@ -191,11 +194,14 @@ void subMenuTUI(WINDOW* menuwin){
 void setColumns(WINDOW* menuwin){
     if(var == 2){ 
         if(subvar == 1 && !flagD){
+            Column1.clear();
             for (size_t i = 0; i < columnTypes.size(); ++i){
                 if(columnTypes[i].second == "numeric")
                     Column1.push_back(columnTypes[i].first);
                 
             }
+
+            Column2.clear();
             for (size_t i = 0; i < 3; ++i){
                 Column2.push_back(columnTypes[i].first);
         
@@ -206,15 +212,16 @@ void setColumns(WINDOW* menuwin){
         }
 
         else if(subvar == 2 && !flagC){
+            Column1.clear();
             for (size_t i = 0; i < columnTypes.size(); ++i){
                 if(columnTypes[i].second == "string" && i>=2)
                     Column1.push_back(columnTypes[i].first);
             
             }
 
-
+            Column2.clear();
             for (size_t i = 0; i < 2; ++i){
-            Column2.push_back(columnTypes[i].first);
+                Column2.push_back(columnTypes[i].first);
         
             }
 
@@ -223,12 +230,14 @@ void setColumns(WINDOW* menuwin){
             
         }
         else if(subvar == 3  && !flagT){
+            Column1.clear();
             for (size_t i = 0; i < columnTypes.size(); ++i){
                 if((columnTypes[i].second == "numeric")&& i>=2 )
                     Column1.push_back(columnTypes[i].first);
             
             }
 
+            Column2.clear();
             for (size_t i = 0; i < columnTypes.size(); ++i){
                 if(columnTypes[i].second == "date" )
                     Column2.push_back(columnTypes[i].first);
@@ -291,11 +300,14 @@ void choiceOfAnalysisTUI(WINDOW* menuwin){
     
     
     highlight = 0;
-    if( subvar == 2 && columnVar1 == 1 && flagSales == 0){
-            Column2.push_back("Item Type");
-            flagSales = 1;
-            Column2.push_back("Back");
-        }
+    
+    if( subvar == 2 && columnVar1 == 1){
+        Column2.push_back("Item Type");
+        Column2.push_back("Back");
+        flagSales = 1;
+    }
+        
+    
     
     while(var == 3){
 
@@ -343,13 +355,9 @@ void choiceOfAnalysisTUI(WINDOW* menuwin){
 }
 
 void analysisTUI(WINDOW* menuwin){
-    //if(var == 4 ){
+    
     highlight = 0;
-    /*wclear(menuwin);
-    box(menuwin, 0, 0);
-    vector<unordered_map<string, string> > data = readCSV(file);
-    const auto& firstMap = data[0];
-    const auto& firstPair = *firstMap.begin();*/
+    
     while(var==4){
         wclear(menuwin);
         box(menuwin, 0, 0);
